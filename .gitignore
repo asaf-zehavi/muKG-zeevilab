@@ -6,3 +6,11 @@
 *.iml
 out
 gen
+
+*.pyc
+*.npy
+*.yml
+
+muKG.egg-info
+
+src/py/data
