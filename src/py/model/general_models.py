@@ -1,3 +1,4 @@
+import importlib
 import os
 
 from src.py.evaluation.evaluation import LinkPredictionEvaluator
@@ -203,6 +204,22 @@ class kge_models:
             mod = mf.infer_model(model_name)
             if mod is None:
                 raise Exception("Invalid input symbol or this version of the model is not implemented yet!")
+            self.model = kge_trainer()
+            self.model.init(self.args, self.kgs, mod)
+
+    def get_model_explicit(self, model_name, model_module_path):
+        model_module = importlib.import_module(model_module_path)
+        mod = getattr(model_module, model_name)(self.args, self.kgs)
+        if module_exists():
+            from src.torch.kge_models.kge_trainer import kge_trainer, parallel_trainer
+            self.args.is_torch = True
+            if self.args.is_parallel:
+                self.model = parallel_trainer()
+            else:
+                self.model = kge_trainer()
+        else:
+            from src.tf.kge_models.kge_trainer import kge_trainer
+            self.args.is_torch = False
             self.model = kge_trainer()
             self.model.init(self.args, self.kgs, mod)
 
