@@ -137,7 +137,7 @@ def generate_neighbours(entity_embeds, entity_list, neighbors_num, threads_num):
         dic = merge_dic(dic, res.get())
 
     del results
-    gc.collect()
+    # gc.collect()
     return dic
 
 
