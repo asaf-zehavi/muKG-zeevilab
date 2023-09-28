@@ -30,7 +30,7 @@ def main():
                         default=None,
                         help='An alternative model module to be imported')
     parser.add_argument('--model-args',
-                        type='str',
+                        type=str,
                         required=False,
                         default=None,
                         help='The path to the model\'s arguments. Default uses muKG\'s default args file.')

@@ -1,5 +1,5 @@
 import importlib
-import os
+import importlib.util
 
 from src.py.evaluation.evaluation import LinkPredictionEvaluator
 from src.py.util.env_checker import module_exists
@@ -208,7 +208,10 @@ class kge_models:
             self.model.init(self.args, self.kgs, mod)
 
     def get_model_explicit(self, model_name, model_module_path):
-        model_module = importlib.import_module(model_module_path)
+        spec = importlib.util.spec_from_file_location("THE_MODEL", model_module_path)
+        model_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(model_module)
+
         mod = getattr(model_module, model_name)(self.args, self.kgs)
         if module_exists():
             from src.torch.kge_models.kge_trainer import kge_trainer, parallel_trainer
