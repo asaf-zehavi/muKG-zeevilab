@@ -60,6 +60,8 @@ def main():
 
     if opts.train:
         model.run()
+    if opts.valid:
+        model.test(is_valid=True)
 
 
 if __name__ == '__main__':

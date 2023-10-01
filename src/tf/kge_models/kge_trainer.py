@@ -162,15 +162,14 @@ class kge_trainer:
                     break'''
         self.save()
         """
-    def test(self):
-        predict = LinkPredictionEvaluator(self.model, self.args, self.kgs)
+    def test(self, is_valid=False):
+        predict = LinkPredictionEvaluator(self.model, self.args, self.kgs, is_valid=is_valid)
         predict.print_results()
 
-    def retest(self):
+    def retest(self, is_valid=False):
         self.model.load_embeddings()
         t1 = time.time()
-        predict = LinkPredictionEvaluator(self.model, self.args, self.kgs)
-        predict.print_results()
+        self.test(is_valid)
         print('test cost time: {:.4f}s'.format(time.time() - t1))
 
     def get_pos_score(self, score):

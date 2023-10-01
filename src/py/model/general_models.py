@@ -226,10 +226,10 @@ class kge_models:
             self.model = kge_trainer()
             self.model.init(self.args, self.kgs, mod)
 
-    def test(self):
+    def test(self, is_valid=False):
         """Test the selected model with the saved entity embedding and relation embedding.
         """
-        self.model.retest()
+        self.model.retest(is_valid=is_valid)
 
     def save(self):
         """Save the selected model's entity embedding and relation embedding under the specific folder.
