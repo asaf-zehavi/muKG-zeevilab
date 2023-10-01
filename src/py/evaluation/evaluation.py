@@ -147,7 +147,7 @@ class EntityTypeEvaluator:
             self.rank_true_tails = np.append(self.rank_true_tails, get_rank(score, tail, True))
             self.filt_rank_true_tails = np.append(self.filt_rank_true_tails, get_rank(filtered_score, tail, True))
             del h_embeds, r_embeds, t_embeds, candidates
-            gc.collect()
+            # gc.collect()
         self.evaluated = True
         self.model.projected = False
 
@@ -278,7 +278,7 @@ class LinkPredictionEvaluator:
             self.rank_true_tails = np.append(self.rank_true_tails, get_rank(score, tail, True))
             self.filt_rank_true_tails = np.append(self.filt_rank_true_tails, get_rank(filtered_score, tail, True))
             del h_embeds, r_embeds, t_embeds, candidates
-            gc.collect()
+            # gc.collect()
         self.evaluated = True
         self.model.projected = False
 
@@ -308,7 +308,7 @@ class LinkPredictionEvaluator:
             self.rank_true_heads = np.append(self.rank_true_heads, get_rank(score, head, True))
             self.filt_rank_true_heads = np.append(self.filt_rank_true_heads, get_rank(filtered_score, head, True))
             del h_embeds, r_embeds, t_embeds, candidates
-            gc.collect()
+            # gc.collect()
         self.evaluated = True
         self.model.projected = False
 
